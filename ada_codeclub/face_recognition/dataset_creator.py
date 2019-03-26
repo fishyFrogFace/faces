@@ -52,9 +52,8 @@ class DatasetCreator(object):
             for (x, y, w, h) in faces:
                 cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
                 roi_gray = gray[y:y + h, x:x + w]
-                roi_color = img[y:y + h, x:x + w]
                 cv2.imshow("image", roi_gray)
-                cv2.imwrite("dataset/" + str(self.face_id) + "/" + str(count) + ".png", roi_color)
+                cv2.imwrite("dataset/" + str(self.face_id) + "/" + str(count) + ".png", roi_gray)
                 count += 1
 
             keycode = cv2.waitKey(100) & 0xff  # Press 'ESC' for exiting video
