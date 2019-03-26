@@ -48,9 +48,14 @@ class DatasetCreator(object):
             # img = cv2.flip(img, -1)  # flip video image vertically
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             faces = self.face_detector.detectMultiScale(gray, 1.3, 5)
-
-            #now use faces to extract data from img, and store that in a location to be used for training later..
-
+            #use faces to extract data from img, and store that in a location to be used for training later..
+            for (x, y, w, h) in faces:
+                cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
+                roi_gray = gray[y:y + h, x:x + w]
+                roi_color = img[y:y + h, x:x + w]
+                cv2.imshow("image", roi_gray)
+                cv2.imwrite("dataset/" + str(self.face_id) + "/" + str(count) + ".png", roi_color)
+                count += 1
 
             keycode = cv2.waitKey(100) & 0xff  # Press 'ESC' for exiting video
             if keycode == 27:
