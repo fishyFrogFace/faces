@@ -26,11 +26,15 @@ class FaceTrainer(object):
         self.logger.add_writer(sys.stdout, Logger.ALL)
 
     def get_images_and_labels(self, path):
-        image_paths = [os.path.join(path, f) for f in os.listdir(path)]
+        image_paths = [os.path.join(path, f).replace("\\", "/") for f in os.listdir(path)]
         face_samples = []
         ids = []
-
-        # should return two lists of numpy_arrays of iamges and the corresponding face ids
+        for folder in image_paths:
+            for image in os.listdir(folder):
+                img_path = folder + "/" + image
+                current_img = cv2.imread(img_path,0)
+                face_samples.append(current_img)
+                ids.append(int(folder.split("/")[1]))
         return face_samples, ids
 
     def run_trainer(self):
