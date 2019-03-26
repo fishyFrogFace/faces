@@ -38,12 +38,11 @@ class FaceTrainer(object):
         return face_samples, ids
 
     def run_trainer(self):
-        self.logger.info("Training faces. This will take awhile. Wait ...")
+        self.logger.info("Training faces. This will take a while. Wait ...")
         faces, ids = self.get_images_and_labels(self.dataset_path)
         self.recognizer.train(faces, np.array(ids))
         self.recognizer.write(self.training_path + '/trainer.yml')
         self.logger.info("\n {0} faces trained. Exiting Program".format(len(np.unique(ids))))
-
 
 if __name__ == "__main__":
     trainer = FaceTrainer()
