@@ -12,7 +12,7 @@ class FaceRecognizer(object):
 
         self.id = 0
         self.confidence = -1
-        self.names = ['None', 'Peter', 'Bjørn', 'Bård']  # Names of people you want to identify (TRAINED FROM DATASET)
+        self.names = {0:'Not known', 1:'Camilla'}  # Names of people you want to identify (TRAINED FROM DATASET)
 
         # Initialize and start realtime video capture
         self.cam = cv2.VideoCapture(0)
@@ -32,8 +32,15 @@ class FaceRecognizer(object):
                                                       minSize=(int(self.minW), int(self.minH)), )
 
             # should use the faces recognized in faces to draw rectangles and IDs on the image returned to screen.
-
-            cv2.imshow('camera', img)
+            for (x, y, w, h) in faces:
+                cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
+                roi_gray = gray[y:y + h, x:x + w]
+                roi_color = img[y:y + h, x:x + w]
+                self.id, self.confidence = self.recognizer.predict(roi_gray)
+                conf = int(100 - self.confidence)
+                who = (self.names[self.id], self.names[0])[self.confidence > 80]
+                cv2.putText(img, who + " " + str(conf), (x+10, y+h+40), self.font, 1, (255, 255, 255), 1)
+                cv2.imshow('camera', img)
 
             k = cv2.waitKey(10) & 0xff  # Press 'ESC' for exiting video
             if k == 27:

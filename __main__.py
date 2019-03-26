@@ -9,8 +9,8 @@ if __name__ == '__main__':
     application.run_image_recording_session()
     application.cleanup()
 
-    #application = FaceTrainer()
-    #application.run_trainer()
+    application = FaceTrainer()
+    application.run_trainer()
 
-    #application = FaceRecognizer()
-    #application.run_recognizer()
+    application = FaceRecognizer()
+    application.run_recognizer()
