@@ -12,11 +12,11 @@ class FaceRecognizer(object):
 
         self.id = 0
         self.confidence = -1
-        self.names = {0:'Not known', 1:'Camilla'}  # Names of people you want to identify (TRAINED FROM DATASET)
+        self.names = {0:'Not known', 1:'Camilla', 2:'Person 2', 3:'Person 3', 4:'Person 4', 5:'Person 5'}  # Names of people you want to identify (TRAINED FROM DATASET)
 
         # Initialize and start realtime video capture
         self.cam = cv2.VideoCapture(0)
-        self.cam.set(3, 640)  # set video widht
+        self.cam.set(3, 640)  # set video width
         self.cam.set(4, 480)  # set video height
 
         # Define min window size to be recognized as a face

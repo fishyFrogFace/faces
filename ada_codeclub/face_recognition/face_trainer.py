@@ -32,7 +32,7 @@ class FaceTrainer(object):
         for folder in image_paths:
             for image in os.listdir(folder):
                 img_path = folder + "/" + image
-                current_img = cv2.imread(img_path,0)
+                current_img = cv2.imread(img_path, 0)
                 face_samples.append(current_img)
                 ids.append(int(folder.split("/")[1]))
         return face_samples, ids
@@ -42,7 +42,7 @@ class FaceTrainer(object):
         faces, ids = self.get_images_and_labels(self.dataset_path)
         self.recognizer.train(faces, np.array(ids))
         self.recognizer.write(self.training_path + '/trainer.yml')
-        self.logger.info("\n {0} faces trained. Exiting Program".format(len(np.unique(ids))))
+        self.logger.info("\n {0} faces trained. Exiting training session\n".format(len(np.unique(ids))))
 
 if __name__ == "__main__":
     trainer = FaceTrainer()

@@ -13,7 +13,7 @@ except:
 class DatasetCreator(object):
     WINDOW_WIDTH = 640
     WINDOW_HEIGHT = 480
-    PICTURES_PER_SAMPLE = 100
+    PICTURES_PER_SAMPLE = 50
 
     def __init__(self, dataset_path="dataset"):
         self.dataset_path = dataset_path
