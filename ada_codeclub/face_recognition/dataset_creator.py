@@ -13,7 +13,7 @@ except:
 class DatasetCreator(object):
     WINDOW_WIDTH = 640
     WINDOW_HEIGHT = 480
-    PICTURES_PER_SAMPLE = 30
+    PICTURES_PER_SAMPLE = 100
 
     def __init__(self, dataset_path="dataset"):
         self.dataset_path = dataset_path
@@ -37,9 +37,8 @@ class DatasetCreator(object):
         return face_detector
 
     def initialize_recording_session(self):
-        print("Press ESC to exit this program.")
-        self.face_id = input('\n enter user id end press <return> ==>  ')
-        self.logger.info("\n Initializing face capture. Look the camera and wait ...")
+        self.face_id = input('\nenter user id end press <return> ==>  ')
+        self.logger.info("\nInitializing face capture. Look the camera and wait ...")
 
     def run_image_recording_session(self):
         count = 0
@@ -56,6 +55,7 @@ class DatasetCreator(object):
                 cv2.imwrite("dataset/" + str(self.face_id) + "/" + str(count) + ".png", roi_gray)
                 count += 1
 
+            #This does not work, for some reason
             keycode = cv2.waitKey(100) & 0xff  # Press 'ESC' for exiting video
             if keycode == 27:
                 self.cleanup()
@@ -64,7 +64,7 @@ class DatasetCreator(object):
                 break
 
     def cleanup(self):
-        self.logger.info("\n Exiting Program and cleanup stuff")
+        self.logger.info("\nExiting Program and cleanup stuff")
         self.camera.release()
         cv2.destroyAllWindows()
 
