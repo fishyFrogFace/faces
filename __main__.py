@@ -1,7 +1,7 @@
-import ada_codeclub
-from ada_codeclub.face_recognition.dataset_creator import DatasetCreator
-from ada_codeclub.face_recognition.face_trainer import FaceTrainer
-from ada_codeclub.face_recognition.face_recognizer import FaceRecognizer
+import ada_codehub
+from ada_codehub.face_recognition.dataset_creator import DatasetCreator
+from ada_codehub.face_recognition.face_trainer import FaceTrainer
+from ada_codehub.face_recognition.face_recognizer import FaceRecognizer
 
 def display_help_menu():
     help = ("help - displays this menu of available options\n"

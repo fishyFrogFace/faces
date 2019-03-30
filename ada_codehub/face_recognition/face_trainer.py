@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 from PIL import Image
 
-from ada_codeclub.face_recognition.utility.logger import Logger
+from ada_codehub.face_recognition.utility.logger import Logger
 
 
 class FaceTrainer(object):
@@ -19,7 +19,7 @@ class FaceTrainer(object):
         if not os.path.isdir(self.training_path):
             os.makedirs(self.training_path)
 
-        self.cascade_path = "ada_codeclub/cascades/haarcascade_frontalface_default.xml"
+        self.cascade_path = "ada_codehub/cascades/haarcascade_frontalface_default.xml"
         self.recognizer = cv2.face.LBPHFaceRecognizer_create()
         self.detector = cv2.CascadeClassifier(self.cascade_path)
         self.logger = Logger(sys.stderr)

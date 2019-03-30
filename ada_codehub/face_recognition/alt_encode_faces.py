@@ -13,7 +13,7 @@ import cv2
 import face_recognition
 
 # construct the argument parser and parse the arguments
-from ada_codeclub.image_paths import ImagePaths
+from ada_codehub.image_paths import ImagePaths
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--dataset", required=True,

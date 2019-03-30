@@ -7,7 +7,7 @@ try:
     from .utility.logger import Logger
 except:
     # Script is not running through __main__
-    from ada_codeclub.face_recognition.utility.logger import Logger
+    from ada_codehub.face_recognition.utility.logger import Logger
 
 
 class DatasetCreator(object):
@@ -20,7 +20,7 @@ class DatasetCreator(object):
         if not os.path.isdir(self.dataset_path):
             os.makedirs(self.dataset_path)
         self.camera = self.initialize_camera()
-        self.cascade_path = "ada_codeclub/cascades/haarcascade_frontalface_default.xml"
+        self.cascade_path = "ada_codehub/cascades/haarcascade_frontalface_default.xml"
         self.face_detector = self.inialize_classifiers()
         self.logger = Logger(sys.stderr)
         self.logger.add_writer(sys.stdout, Logger.ALL)

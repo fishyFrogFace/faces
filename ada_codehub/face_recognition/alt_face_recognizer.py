@@ -10,7 +10,7 @@ import imutils
 
 # import the necessary packages
 from imutils.video import VideoStream
-from ada_codeclub.face_recognition.utility.fps import FPS
+from ada_codehub.face_recognition.utility.fps import FPS
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()

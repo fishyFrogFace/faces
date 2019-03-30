@@ -1,19 +1,19 @@
 import cv2
 
+from ada_codehub.face_recognition.names import names
 
 class FaceRecognizer(object):
 
     def __init__(self):
         self.recognizer = cv2.face.LBPHFaceRecognizer_create()
         self.recognizer.read('trainer/trainer.yml')
-        self.cascadePath = "ada_codeclub/cascades/haarcascade_frontalface_default.xml"
+        self.cascadePath = "ada_codehub/cascades/haarcascade_frontalface_default.xml"
         self.faceCascade = cv2.CascadeClassifier(self.cascadePath)
         self.font = cv2.FONT_HERSHEY_SIMPLEX
 
         self.id = 0
         self.confidence = -1
-        self.names = {0:'Not known', 1:'Camilla', 2:'Person 2', 3:'Person 3', 4:'Person 4', 5:'Person 5'}  # Names of people you want to identify (TRAINED FROM DATASET)
-
+        
         # Initialize and start realtime video capture
         self.cam = cv2.VideoCapture(0)
         self.cam.set(3, 640)  # set video width
@@ -38,7 +38,7 @@ class FaceRecognizer(object):
                 roi_color = img[y:y + h, x:x + w]
                 self.id, self.confidence = self.recognizer.predict(roi_gray)
                 conf = int(100 - self.confidence)
-                who = (self.names[self.id], self.names[0])[self.confidence > 80]
+                who = (names[self.id], names[0])[self.confidence > 80]
                 cv2.putText(img, who + " " + str(conf), (x+10, y+h+40), self.font, 1, (255, 255, 255), 1)
             
             cv2.imshow("video", img)
