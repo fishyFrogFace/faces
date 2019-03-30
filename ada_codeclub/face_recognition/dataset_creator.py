@@ -51,11 +51,11 @@ class DatasetCreator(object):
             for (x, y, w, h) in faces:
                 cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
                 roi_gray = gray[y:y + h, x:x + w]
-                cv2.imshow("image", roi_gray)
                 cv2.imwrite("dataset/" + str(self.face_id) + "/" + str(count) + ".png", roi_gray)
                 count += 1
 
-            #This does not work, for some reason
+            cv2.imshow("video", img)
+
             keycode = cv2.waitKey(100) & 0xff  # Press 'ESC' for exiting video
             if keycode == 27:
                 self.cleanup()
@@ -64,7 +64,7 @@ class DatasetCreator(object):
                 break
 
     def cleanup(self):
-        self.logger.info("\nExiting Program and cleanup stuff")
+        self.logger.info("\nExiting trainer and returning to main menu")
         self.camera.release()
         cv2.destroyAllWindows()
 

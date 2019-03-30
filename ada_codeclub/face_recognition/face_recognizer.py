@@ -40,7 +40,8 @@ class FaceRecognizer(object):
                 conf = int(100 - self.confidence)
                 who = (self.names[self.id], self.names[0])[self.confidence > 80]
                 cv2.putText(img, who + " " + str(conf), (x+10, y+h+40), self.font, 1, (255, 255, 255), 1)
-                cv2.imshow('camera', img)
+            
+            cv2.imshow("video", img)
 
             k = cv2.waitKey(10) & 0xff  # Press 'ESC' for exiting video
             if k == 27:
