@@ -8,6 +8,7 @@ def display_help_menu():
           + "quit - exits the program\n"
           + "new - record a new face\n"
           + "train - use previously recorded faces to train the recognizer"
+          + "run - run the facial recognition on video from camera"
     )
     print(help)
     start()
@@ -17,7 +18,8 @@ def input_to_action(choice):
         "help": display_help_menu,
         "quit": exit,
         "new": new_face,
-        "train": train_from_pics
+        "train": train_from_pics,
+        "run": recognize_people,
     }
     return switcher.get(choice, not_valid_choice)
 
@@ -34,17 +36,19 @@ def train_from_pics():
     application.run_trainer()
     start()
 
+#crashes if not trained
+def recognize_people():
+    application = FaceRecognizer()
+    application.run_recognizer()
+    start()
+
 def not_valid_choice():
     print("Your choice was not valid\n")
     start()
 
 def start():
-        userInput = input("What do you want to do? Type \"help\" for a menu\n")
-        input_to_action(userInput.lower())()
-
-        #code currently never reached
-        application = FaceRecognizer()
-        application.run_recognizer()
+    userInput = input("What do you want to do? Type \"help\" for a menu\n")
+    input_to_action(userInput.lower())()
 
 if __name__ == '__main__':
     start()
