@@ -7,8 +7,9 @@ def display_help_menu():
     help = ("help - displays this menu of available options\n"
           + "quit - exits the program\n"
           + "new - record a new face\n"
-          + "train - use previously recorded faces to train the recognizer"
-          + "run - run the facial recognition on video from camera"
+          + "train - use previously recorded faces to train the recognizer\n"
+          + "run - run the facial recognition on video from camera\n"
+          + "pic - run the facial recognition on an image file\n"
     )
     print(help)
     start()
@@ -20,6 +21,7 @@ def input_to_action(choice):
         "new": new_face,
         "train": train_from_pics,
         "run": recognize_people,
+        "pic": from_pic,
     }
     return switcher.get(choice, not_valid_choice)
 
@@ -40,6 +42,12 @@ def train_from_pics():
 def recognize_people():
     application = FaceRecognizer()
     application.run_recognizer()
+    start()
+
+def from_pic():
+    application = FaceRecognizer()
+    filepath = input("\nWhat is the path to your file?\n")
+    application.recognize_from_file(filepath)
     start()
 
 def not_valid_choice():
