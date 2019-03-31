@@ -46,8 +46,8 @@ def recognize_people():
 
 def from_pic():
     application = FaceRecognizer()
-    filepath = input("\nWhat is the path to your file?\n")
-    application.recognize_from_file(filepath)
+    f = input("\nWhat is your file called?\nWill look for files in folder \"faces/pics/\"\n")
+    application.recognize_from_file("pics/" + f)
     start()
 
 def not_valid_choice():
